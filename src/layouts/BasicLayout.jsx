@@ -76,7 +76,10 @@ const BasicLayout = props => {
     });
 
   return (
+    <div
+    >
       {children}
+    </div>
   );
 };
 
