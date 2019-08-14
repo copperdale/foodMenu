@@ -56,12 +56,12 @@ const BasicLayout = props => {
 
   useEffect(() => {
     if (dispatch) {
-      dispatch({
-        type: 'user/fetchCurrent',
-      });
-      dispatch({
-        type: 'settings/getSetting',
-      });
+      // dispatch({
+      //   type: 'user/fetchCurrent',
+      // });
+      // dispatch({
+      //   type: 'settings/getSetting',
+      // });
     }
   }, []);
   /**
@@ -76,10 +76,43 @@ const BasicLayout = props => {
     });
 
   return (
-    <div
+    <ProLayout
+      logo={logo}
+      onCollapse={handleMenuCollapse}
+      menuItemRender={(menuItemProps, defaultDom) => {
+        if (menuItemProps.isUrl) {
+          return defaultDom;
+        }
+
+        return <Link to={menuItemProps.path}>{defaultDom}</Link>;
+      }}
+      breadcrumbRender={(routers = []) => [
+        {
+          path: '/',
+          breadcrumbName: formatMessage({
+            id: 'menu.home',
+            defaultMessage: 'Home',
+          }),
+        },
+        ...routers,
+      ]}
+      itemRender={(route, params, routes, paths) => {
+        const first = routes.indexOf(route) === 0;
+        return first ? (
+          <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+        ) : (
+          <span>{route.breadcrumbName}</span>
+        );
+      }}
+      footerRender={footerRender}
+      menuDataRender={menuDataRender}
+      formatMessage={formatMessage}
+      rightContentRender={rightProps => <RightContent {...rightProps} />}
+      {...props}
+      {...settings}
     >
       {children}
-    </div>
+    </ProLayout>
   );
 };
 
