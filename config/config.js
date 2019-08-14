@@ -141,7 +141,7 @@ export default {
     },
   },
   manifest: {
-    basePath: '/',
+    basePath: '/foodMenu/',
   },
   chainWebpack: webpackPlugin,
   /*
