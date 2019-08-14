@@ -76,7 +76,7 @@ const BasicLayout = props => {
     });
 
   return (
-    <ProLayout
+    <div
       logo={logo}
       onCollapse={handleMenuCollapse}
       menuItemRender={(menuItemProps, defaultDom) => {
@@ -112,7 +112,7 @@ const BasicLayout = props => {
       {...settings}
     >
       {children}
-    </ProLayout>
+    </div>
   );
 };
 
