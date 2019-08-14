@@ -71,6 +71,7 @@ if (isAntDesignProPreview) {
 
 export default {
   plugins,
+  publicPath: '/foodMenu/dist/',
   block: {
     defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
   },
